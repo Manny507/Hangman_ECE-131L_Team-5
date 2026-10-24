@@ -6,6 +6,7 @@ Hangman project in C for ECE-131L
 
 //Documents for review 
 https://www.geeksforgeeks.org/c/hangman-game-in-c/
+https://youtu.be/2SgI1kAczfk (Github Tutorial)
 
 //summary of 10_23_2026 meeting
 Project Must Haves
@@ -16,3 +17,5 @@ Project Must Haves
 - Calculate Scores (Point System)
 - Allow Replays
 - Save and Display Scores & Results
+
+Meeting Availability: https://crab.fit/ece131l-project-meeting-2-368602
