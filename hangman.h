@@ -1,5 +1,5 @@
 /* hangman.h is our header file that contains:
- * Function prototypes, structs declarations, shared definitions, and C libraries.
+ * Function prototypes, struct declarations, shared definitions, and C libraries.
  * Written by: Cesar Marquez-Garcia 
 */
 
@@ -7,7 +7,7 @@
 #include <stdio.h> // printf, scanf, etc.
 #include <stdlib.h> // rand, srand, etc.
 #include <string.h> // strcpy
-#include <time.h> //time 
+#include <time.h> // time 
 
 // Game limits and global definitions
 #define MAX_WORDS 50   // Max number of words the list can hold.
@@ -30,8 +30,20 @@ typedef struct {
 //Function prototypes for all the functions in the game
 
     //Scores and reports (scores.c)
-int loadScores(GameRecord history[]);
+int loadScores(GameRecord history[]);                     
 void saveScores(GameRecord history[], int gameCount);
 void showScores(GameRecord history[], int gameCount);
 void showStatistics(GameRecord history[], int gameCount);
 
+    // Input checks (input.c)
+void clearInput(void);
+int  readNumber(char prompt[], int min, int max);
+char readLetter(char prompt[]);
+int  askYesNo(char prompt[]);
+void readWord(char prompt[], char word[]);
+int  isAllLetters(char text[]);
+void toLowerWord(char word[]);
+
+    //words list management (words.c)
+int loadWords(char words[][WORD_SIZE]);
+void saveWords(char words[][WORD_SIZE]);
