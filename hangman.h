@@ -27,13 +27,8 @@ typedef struct {
     int score;  
 } GameRecord;
 
-//Function prototypes for all the functions in the game
-
-    //Scores and reports (scores.c)
-int loadScores(GameRecord history[]);                     
-void saveScores(GameRecord history[], int gameCount);
-void showScores(GameRecord history[], int gameCount);
-void showStatistics(GameRecord history[], int gameCount);
+// Function prototypes for all the functions in the game, grouped by the file where 
+// they are defined.
 
     // Input checks (input.c)
 void clearInput(void);
@@ -44,6 +39,27 @@ void readWord(char prompt[], char word[]);
 int  isAllLetters(char text[]);
 void toLowerWord(char word[]);
 
-    //words list management (words.c)
+    // Words list management (words.c)
 int loadWords(char words[][WORD_SIZE]);
 void saveWords(char words[][WORD_SIZE]);
+void addWord(char words[][WORD_SIZE], int *wordCount);
+int wordExists(char words[][WORD_SIZE], int wordCount, char word[]);
+
+    // Game rules (game.c)
+int pickRandomWord(int wordCount);
+void drawHangman(int wrong);
+void showBoard(char revealed[], char guessed[], int wrong);
+int alreadyGuessed(char guessed[], char letter);
+int revealLetter(char secret[], char revealed[], char letter);
+int computeScore(int wordLength, int wrong, int won);
+int playRound(char secret[]);
+
+    // Scores and reports (scores.c)
+int loadScores(GameRecord history[]);                     
+void saveScores(GameRecord history[], int gameCount);
+void showScores(GameRecord history[], int gameCount);
+void showStatistics(GameRecord history[], int gameCount);
+
+    // Menu and game flow (main.c)
+void printMenu(void);
+void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int *gamecount);
