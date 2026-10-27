@@ -18,7 +18,7 @@
 #define WORDS_FILE "words.txt" // Name for word list file
 #define SCORES_FILE "scores.txt" // Name for the score history file
 
-// Structs
+// Player game record struct.
 typedef struct {
     char player[WORD_SIZE]; // Player's name
     char word[WORD_SIZE]; // The word to guess
@@ -26,4 +26,12 @@ typedef struct {
     int wrong; // Number of wrong guesses made
     int score;  
 } GameRecord;
+
+//Function prototypes for all the functions in the game
+
+    //Scores and reports (scores.c)
+int loadScores(GameRecord history[]);
+void saveScores(GameRecord history[], int gameCount);
+void showScores(GameRecord history[], int gameCount);
+void showStatistics(GameRecord history[], int gameCount);
 
