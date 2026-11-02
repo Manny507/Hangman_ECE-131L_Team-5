@@ -11,7 +11,7 @@
 
 // Game limits and global definitions
 #define MAX_WORDS 50   // Max number of words the list can hold.
-#define WORD_SIZE 21   // 20 letters max plus 1 for the invisible '\0'
+#define WORD_SIZE 21   // 20 letters max plus 1 for '\0'
 #define MIN_LETTERS 3  // Least amount of letters allowed for a word
 #define MAX_GAMES 100  // Most games we want our history to hold
 #define MAX_WRONG 6    // Max wrong guesses allowed before losing
