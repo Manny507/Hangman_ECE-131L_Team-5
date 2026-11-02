@@ -1,5 +1,6 @@
 #include "hangman.h"
 
+// creates scores.txt and reads each line into a GameRecord struct in history 
 int loadScores(GameRecord history[]){
 
 }
