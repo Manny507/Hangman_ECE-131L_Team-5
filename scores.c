@@ -4,7 +4,7 @@
 */
 #include "hangman.h"
 
-// creates scores.txt and reads each line into a GameRecord struct in history 
+// loadScores creates scores.txt and writes each line into a struct named "Game record". 
 int loadScores(GameRecord history[]){
 
 }
