@@ -4,7 +4,7 @@
 */
 #include "hangman.h"
 
-/* 
+/*copied and commented out struct from hangman.h to refer to structure.
 typedef struct {
     char player[WORD_SIZE]; // Player's name
     char word[WORD_SIZE]; // The word to guess
@@ -18,7 +18,7 @@ typedef struct {
 // ... then load scores will load 0 games. Returns how many games were loaded, so main.c can set gameCount.
 int loadScores(GameRecord history[]){
     FILE *scoreFile;
-    scoreFile = fopen(SCORES_FILE, "r");
+    scoreFile = fopen(SCORES_FILE, "r"); //allows us to read scores.txt
 
     int count = 0;
 
@@ -45,7 +45,7 @@ int loadScores(GameRecord history[]){
 // and creates scores.txt if it didn't already exist.
 void saveScores(GameRecord history[], int gameCount){
     FILE *scoreFile;
-    scoreFile = fopen(SCORES_FILE, "w");
+    scoreFile = fopen(SCORES_FILE, "w"); //allows us to write into scores.txt
     int i;
 
     // In case scores.txt can't be accessed.
@@ -65,8 +65,20 @@ void saveScores(GameRecord history[], int gameCount){
     fclose(scoreFile);
 }
 
+// showScores prints data from our GameRecord array
 void showScores(GameRecord history[], int gameCount){
+    // Checks if there's any data to display.
+    if(gameCount == 0){
+        printf("No score data to show.\n");
+        return;
+    }
 
+    // prints a header row 
+    printf("%-11s %-11s %5s %5s %5s\n", "Player", "Word", "Won", "Wrong", "Score");
+    // prints out score data
+    for(int i=0; i<gameCount; i++){
+        printf("%-11s %-11s %5d %5d %5d\n", history[i].player, history[i].word, history[i].won, history[i].wrong, history[i].score);
+    }
 }
 
 void showStatistics(GameRecord history[], int gameCount){
