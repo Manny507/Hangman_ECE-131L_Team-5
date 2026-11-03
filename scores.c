@@ -41,9 +41,28 @@ int loadScores(GameRecord history[]){
     return count;
 }
 
-// saveScores creates scores.txt and or creates it if it isn't already created.
+// saveScores writes data from history to scores.txt 
+// and creates scores.txt if it didn't already exist.
 void saveScores(GameRecord history[], int gameCount){
+    FILE *scoreFile;
+    scoreFile = fopen(SCORES_FILE, "w");
+    int i;
 
+    // In case scores.txt can't be accessed.
+    if (scoreFile == NULL) {
+        printf("Error: could not save into scores.txt.\n");
+        return;
+    }
+
+    // Writes the GameRecord into scores.txt
+    for(i=0; i<gameCount; i++){
+        fprintf(scoreFile, "%s %s %d %d %d\n",
+        history[i].player, history[i].word, 
+        history[i].won, history[i].wrong, history[i].score);   
+    }
+
+    // fclose prevents our data from being lost & our game crashing.
+    fclose(scoreFile);
 }
 
 void showScores(GameRecord history[], int gameCount){
