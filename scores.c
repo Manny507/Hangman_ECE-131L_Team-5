@@ -82,6 +82,6 @@ void showScores(GameRecord history[], int gameCount){
 }
 
 void showStatistics(GameRecord history[], int gameCount){
-
+    
 }
 
