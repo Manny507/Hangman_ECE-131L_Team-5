@@ -1,0 +1,9 @@
+programming
+structure
+variable
+passbyvalue
+passbyreference
+pointer
+dereference
+computer
+
