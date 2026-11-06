@@ -13,6 +13,15 @@
 //This is an important function to avoid keeping newlines and other 'garbage' input out of the input buffer
 //For example, when the user guesses 'a' and hit 'Enter' they are adding '/n' which would get pushed into the next guess
 //Putting these inputs into a variable will avoid any undefined behavior in the program.
+//FUNCTION PROTOTYPES:
+void clear_input();
+int read_number(char prompt[], int min, int max);
+char read_letter(char prompt[]);
+int yes_or_no(char prompt[]);
+void read_word(char prompt[], char word[]);
+int all_letters(char text[]);
+void lower_word( char word[]);
+
 
 void clear_input(){
     int c;
