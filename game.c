@@ -35,6 +35,18 @@ void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks th
     printf("=========\n");
 }
 
+//alreadyGuessed: returns 1 if letter is in the guessed list, 0 if not.
+int alreadyGuessed(char guessed[], char letter) {
+    int i;
+
+    for (i = 0; guessed[i] != '\0'; i++) {
+        if (guessed[i] == letter) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void showBoard(char revealed[], char guessed[], int wrong) {
     int i;
 
