@@ -14,7 +14,7 @@ void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks th
     }
 
     if (wrong >= 4) {
-        printf("/|\   |\n");
+        printf("/|\\   |\n");
     } else if (wrong >= 3) {
         printf(" /|   |\n)");
     } else if (wrong >= 2) {
