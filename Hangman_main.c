@@ -93,9 +93,9 @@ int main(void){
     int gameCount;
     int choice;
 	
-	//This line make the program pick a different random word each time the program runs
+	// This line make the program pick a different random word each time the program runs
 	// srand() sets the starting point (the seed) that rand() uses to pick numbers.
-	//The seed is the starting point of the algorithm that srand runs to pick a a randome number 
+	// The seed is the starting point of the algorithm that srand runs to pick a a randome number 
 	// time(NULL) returns the current clock time in seconds, which is different on every run,
 	// so the seed changes each time and pickRandomWord chooses different words.
 	// In playGame, this line chooses the word: strcpy(secret, words[pickRandomWord(wordCount)]);
@@ -103,7 +103,9 @@ int main(void){
 	// and words[...] turns that index into an actual word.
 	// For that index to be random, pickRandomWord calls rand()
 	// rand() repeats the same sequence unless it's seeded, and srand(time(NULL)) is what seeds it.
-	//Talk to Ceasr about Ean's pickrandom f-n and wether or not it uses rand() % pickrandomWord() logic.
+	// srand() and rand() are connected, this line seeds the rand() call in pickrandomWord
+	// Then whatever rand() returns is modded agaisnt the word count, and gives a remanider
+	// that will never be more than the amount of words that have been added 
 	srand(time(NULL));      
 	 
 	printf("Welcome to Hangman\n");
