@@ -76,7 +76,7 @@ char readLetter(char prompt[]){
 //If the user typed in too many letters this function will clear the input and ask the user to try again  
 	    scanf("%c", &letter);
 	    if (getchar() != '\n'){
-		    printf("Please do not type more than one letter!\n");
+		    printf("Please do not type more than one letter or a space!!\n");
 	            clearInput();
 //Using ASCII values we can make sure our inputs are indeed a letter 		    
 	    } else if ((letter < 'a' || letter > 'z') && (letter < 'A' || letter > 'Z')){
