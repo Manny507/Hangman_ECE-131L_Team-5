@@ -81,7 +81,7 @@ void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int 
 		
 		printf("Score this game %d\n", history[slot].score);
 	}
-	// yes_or_no f-n comes from inputs.c 
+	// askYesNo f-n comes from inputs.c 
 	// User input is getting read with readletter f-n also located in the input.c file. It is a f-n within a function it's used in the yes_or_no f-n
 	while (askYesNo("Play Again (y/n)?: "));
 }
@@ -146,10 +146,10 @@ int main(void){
                 saveScores(history, gameCount);
                 break;
             case 0:
-				// Uses yes_or_no from input.c to check wether or not user wants to save
+				// Uses askYesNO from input.c to check wether or not user wants to save
 				// if yes, loop uses saveWords from words.c and saveScores.c from scores.c
 				// Futher testing is required to see if this line will work the yes_or_no function in it's current state
-                if (yes_or_no("Save before quitting? (y/n): ")) {
+                if (askYesNo("Save before quitting? (y/n): ")) {
                     saveWords(words, wordCount);
                     saveScores(history, gameCount);
                 }
