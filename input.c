@@ -152,7 +152,7 @@ int isAllLetters(char text[]){
 
 //We loop until we reach '\n' meaning our array(word) has reached the end	
 //If we do not have a letter, then we return 0
-	for( int i = 0; text[i] != '\n'; i++){
+	for( int i = 0; text[i] != '\0'; i++){
 		if( (text[i] < 'a' || text[i] > 'z') && (text[i] < 'A' || text[i] > 'Z')){
 			return 0;
 		}
