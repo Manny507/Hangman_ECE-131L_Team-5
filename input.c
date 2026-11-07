@@ -74,7 +74,7 @@ char readLetter(char prompt[]){
 //However scanf does automatically add '/n' when the user hits "Enter" for a char (NOT STRING) 
 //so if the user adds more letters getchar can check that the next letter is not '\n' 
 //If the user typed in too many letters this function will clear the input and ask the user to try again  
-	    if (scanf("%c", &letter));
+	    (scanf("%c", &letter))
 	    if (getchar() != '\n'){
 		    printf("Please do not type more than one letter!\n");
 	            clear_input();
@@ -136,8 +136,8 @@ void readWord(char prompt[], char word[]){
 	    scanf("%20s", word);
 	    if ( getchar() != '\n'){
 		    printf("Please do not type a word more than 20 letters!\n");
-		    clear_input();
-	    }else if (!all_letters(word)){
+		    clearInput();
+	    }else if (!isAllletters(word)){
 		    printf("Please use only letters!\n");
 	    } else{
 		    valid = 1;
