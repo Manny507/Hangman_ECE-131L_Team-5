@@ -67,13 +67,14 @@ int computeScore(int wordLength, int wrong, int won) {
     return 10 * wordLength + 20 * (MAX_WRONG - wrong);
 }
 
-int playRoung(char secret[]) {
+int playRound(char secret[]) {
     char revealed[WORD_SIZE];
     char guessed[27]= "";
     int wrong = 0;
     int length = strlen(secret);
     char letter;
     int i;
+    int triedCount = 0;
 
     for (i=0; i<length; i++) {
         revealed[i] = '_';
@@ -84,14 +85,14 @@ int playRoung(char secret[]) {
         showBoard(revealed, guessed, wrong);
         letter = readLetter("Guess a letter");
 
-        if (alreadyGuessed(guessed, letter));
+        if (alreadyGuessed(guessed, letter)){
             printf("You already guessed '%c', No penalty.\n", letter);
     } else {
         guessed[triedCount] = letter;
         triedCount++;
         guessed[triedCount] = '\0';
 
-        if (reveaLetter(secret, revealed, letter)>0){
+        if (revealLetter(secret, revealed, letter)>0){
             printf(" Good Job! '%c' is in the word.\n", letter);
         } else {
             printf(" Sorry, '%c' is not in the word.\n", letter);
@@ -100,7 +101,7 @@ int playRoung(char secret[]) {
         
     }
 
-    showoard(revealed, guessed, wrong);
+    showBoard(revealed, guessed, wrong);
 
     return wrong;
 }
