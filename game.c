@@ -50,7 +50,7 @@ int alreadyGuessed(char guessed[], char letter) {
 void showBoard(char revealed[], char guessed[], int wrong) {
     int i;
 
-    printf("/n");
+    printf("\n");
     drawHangman(wrong);
 
     printf("Word:  ");
