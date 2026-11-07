@@ -14,16 +14,9 @@
 //For example, when the user guesses 'a' and hit 'Enter' they are adding '/n' which would get pushed into the next guess
 //Putting these inputs into a variable will avoid any undefined behavior in the program.
 //FUNCTION PROTOTYPES:
-void clear_input();
-int read_number(char prompt[], int min, int max);
-char read_letter(char prompt[]);
-int yes_or_no(char prompt[]);
-void read_word(char prompt[], char word[]);
-int all_letters(char text[]);
-void lower_word( char word[]);
+#include "hangman.h"
 
-
-void clear_input(){
+void clearInput(){
     int c;
 
     do{
@@ -43,7 +36,7 @@ void clear_input(){
 //Read the number (throwing away newlines) 
 //Keep the number between the appropriate range 
 
-int read_number(char prompt[], int min, int max){
+int readNumber(char prompt[], int min, int max){
     int number;
     int valid = 0;
 
@@ -59,7 +52,7 @@ int read_number(char prompt[], int min, int max){
 		    valid = 1;
 	    }
 
-	    clear_input();
+	    clearInput();
     
     }while(valid == 0);
 
@@ -71,7 +64,7 @@ int read_number(char prompt[], int min, int max){
 //Second part will evaluate whether the user entered a letter 
 
 
-char read_letter(char prompt[]){
+char readLetter(char prompt[]){
     char letter;
     int valid = 0;
 
@@ -81,7 +74,7 @@ char read_letter(char prompt[]){
 //However scanf does automatically add '/n' when the user hits "Enter" for a char (NOT STRING) 
 //so if the user adds more letters getchar can check that the next letter is not '\n' 
 //If the user typed in too many letters this function will clear the input and ask the user to try again  
-	    if scanf("%c", &letter);
+	    if (scanf("%c", &letter));
 	    if (getchar() != '\n'){
 		    printf("Please do not type more than one letter!\n");
 	            clear_input();
@@ -111,12 +104,12 @@ char read_letter(char prompt[]){
 //For yes the function will return 1
 //For no the function will return 0 ( doing nothing)
 
-int yes_or_no(char prompt[]){
+int askYesNo(char prompt[]){
     char answer; 
 //We wil use our readLetter function to prompt the user to type in a letter
 //We can then accept answers that are only either 'y' or 'n' 
     do{
-	    answer = read_letter(prompt);
+	    answer = readLetter(prompt);
 	    if ( answer != 'y' && answer != 'n'){
 		    printf("Please answer Yes (y) or No (n)\n");
 	    }
@@ -132,7 +125,7 @@ int yes_or_no(char prompt[]){
 //readWord function will make sure a words contains ONLY letters, up to 20 will be allowed ( feel free to change this parameter) 
 //I will use isAllLetters function to make sure that the first condition of only letters is met
 
-void read_word(char prompt[], char word[]){
+void readWord(char prompt[], char word[]){
     int valid = 0;
 
     do{
@@ -155,7 +148,7 @@ void read_word(char prompt[], char word[]){
 //AllLetters will check through a for-loop whether a char array (word) is actually all letters 
 //In which case it will return 1
 
-int all_letters(char text[]){
+int isAllLetters(char text[]){
 
 //We loop until we reach '\n' meaning our array(word) has reached the end	
 //If we do not have a letter, then we return 0
@@ -172,7 +165,7 @@ int all_letters(char text[]){
 //We will make use of a for-loop as in the previous function to go through all letters
 //and use the same arithmetic as in readLetter to change each letter in the word to lowercase
 
-void lower_word( char word[]){
+void toLowerWord( char word[]){
 	
 	for( int i = 0; word[i] != '\n';i++){
 		if(word[i] >= 'A' && word[i] <= 'Z'){
