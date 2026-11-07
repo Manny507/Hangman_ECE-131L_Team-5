@@ -80,7 +80,7 @@ char readLetter(char prompt[]){
 	            clearInput();
 //Using ASCII values we can make sure our inputs are indeed a letter 		    
 	    } else if ((letter < 'a' || letter > 'z') && (letter < 'A' || letter > 'Z')){
-		    printf("Please enter a letter, %c is not a letter", letter);
+		    printf("Please enter a letter, %c is not a letter\n", letter);
 	    } else{
 		    valid = 1;
 	    }
