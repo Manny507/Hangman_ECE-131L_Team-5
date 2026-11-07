@@ -14,7 +14,7 @@ void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks th
     }
 
     if (wrong >= 4) {
-        printf("/|\ |\n");
+        printf("/|\   |\n");
     } else if (wrong >= 3) {
         printf(" /|   |\n)");
     } else if (wrong >= 2) {
@@ -24,7 +24,7 @@ void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks th
     }
     if (wrong>= 6) {
         printf("/\\  |\n");
-    } elseif (wrong >= 5) {
+    } else if (wrong >= 5) {
         printf(" /   |\n");
     } else {
         printf("     |\n");
@@ -44,14 +44,14 @@ void showBoard(char revealed[], char guessed[], int wrong) {
     }
     printf("\n");
     printf("Guessed: %s\n", guessed);
-    printf("Lives: %s\n", MAX_WRONG - wrong);
+    printf("Lives: %d\n", MAX_WRONG - wrong);
 }
 
 int revealLetter(char secret[], char revealed[], char letter) {
     int i;
     int found = 0;
 
-    for (i = 0, secret[i] != '\0'; i++) {
+    for (i = 0; secret[i] != '\0'; i++) {
         if (secret[i] == letter) {
             revealed[i] = letter;
             found++;
@@ -60,7 +60,7 @@ int revealLetter(char secret[], char revealed[], char letter) {
     return found;
 }
 
-int computeScore(int wordLength, int wrong int won) {
+int computeScore(int wordLength, int wrong, int won) {
     if (won == 0){
         return 0;
     }

@@ -44,6 +44,7 @@ int loadWords(char words[][WORD_SIZE]);
 void saveWords(char words[][WORD_SIZE]);
 void addWord(char words[][WORD_SIZE], int *wordCount);
 int wordExists(char words[][WORD_SIZE], int wordCount, char word[]);
+void showWords(char words[][WORD_SIZE], int wordCount);
 
     // Game rules (game.c)
 int pickRandomWord(int wordCount);
