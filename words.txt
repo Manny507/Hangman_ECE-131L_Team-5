@@ -1,0 +1,12 @@
+resistor
+capacitor
+inductor
+voltage
+current
+circuit
+diode
+transistor
+ground
+battery
+oscilloscope
+multimeter
