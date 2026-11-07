@@ -1,7 +1,7 @@
 /* hangman.h is our header file that contains:
  * Function prototypes, struct declarations, shared definitions, and C libraries.
  * Written by: Cesar Marquez-Garcia 
-*/
+*/ 
 
 // Libraries
 #include <stdio.h> // printf, scanf, etc.
