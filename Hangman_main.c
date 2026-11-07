@@ -26,7 +26,7 @@ void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int 
 	
 	// Ask for the player's name once, before the game loop starts
 	// Comes from input.c file
-	readWord("Player name: ", player);
+	read_word("Player name: ", player);
 	
 	do{
 		// Stop if history is full so we never write past the end of the array
@@ -112,36 +112,49 @@ int main(void){
 	
 	do{ 
 	printmenu();
-	choice = readNumber("Choose an option: ", 0, 6);
+	//Inputs are read using the read_number F-n from inputs.c and then checked
+	//against a switch case to see what the user chose, functions from our different .c
+	//files are then called accordingly
+	choice = read_number("Choose an option: ", 0, 6); 
 	
 	        switch (choice) {
             case 1:
+				//Comes from the games.c file
                 playGame(words, wordCount, history, &gameCount);
                 break;
             case 2:
+				//Comes from words.c
                 addWord(words, &wordCount);
                 break;
             case 3:
+				//Comes from words.c
                 showWords(words, wordCount);
                 break;
             case 4:
+				//Comes from scores.c
                 showScores(history, gameCount);
                 break;
             case 5:
+				//Comes from scores.c
                 showStatistics(history, gameCount);
                 break;
             case 6:
+				//saveWords comes from words.c and saveScores comes from scores.c 
                 saveWords(words, wordCount);
                 saveScores(history, gameCount);
                 break;
             case 0:
-                if (askYesNo("Save before quitting? (y/n): ")) {
+				//Uses yes_or_no from input.c to check wether or not user wants to save
+				//if yes, loop uses saveWords from words.c and saveScores.c from scores.c
+				//Futher testing is required to see if this line will work the yes_or_no function in it's current state
+                if (yes_or_no("Save before quitting? (y/n): ")) {
                     saveWords(words, wordCount);
                     saveScores(history, gameCount);
                 }
                 printf("Goodbye!\n");
                 break;
         }
+		// Go back to the top while choice is not 0; picking 0 makes this false and ends the loop.
     } while (choice != 0);
 
     return 0;
