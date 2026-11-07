@@ -1,35 +1,38 @@
-#include "Hangman.h"
+#include "hangman.h"
 
 int pickRandomWord(int wordCount){ //funcction name is pickRandomWorld & wordCount is the words we have available 
     return rand() % wordCount; //rand generates a random number w/ % wordCOunt makes the random number correlates to a position in that array
 }
 
 void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks those wrong guesses
-    printf("  _____\n"); //starts to print out the frame of the hangman 
+    printf("  _____\n"); //starts to print out the frame of the hangman
     printf("  |   |\n");
-    if(wrong >=1) {//Each numnber from 1-6 represents a wrong guess and that correlates to the body of the stickman as you progress
-        printf("  O |\n");
+    if (wrong >= 1) { //Each number from 1-6 represents a wrong guess and that correlates to the body of the stickman as you progress
+        printf("  O   |\n");
     } else {
-        printf("    |\n");
+        printf("      |\n");
     }
 
     if (wrong >= 4) {
-        printf("/|\\   |\n");
+        printf(" /|\\  |\n");
     } else if (wrong >= 3) {
-        printf(" /|   |\n)");
+        printf(" /|   |\n");
     } else if (wrong >= 2) {
         printf("  |   |\n");
     } else {
-        printf("    |\n");
-    }
-    if (wrong>= 6) {
-        printf("/\\  |\n");
-    } else if (wrong >= 5) {
-        printf(" /   |\n");
-    } else {
-        printf("     |\n");
+        printf("      |\n");
     }
 
+    if (wrong >= 6) {
+        printf(" / \\  |\n");
+    } else if (wrong >= 5) {
+        printf(" /    |\n");
+    } else {
+        printf("      |\n");
+    }
+
+    printf("      |\n");
+    printf("=========\n");
 }
 
 void showBoard(char revealed[], char guessed[], int wrong) {
@@ -83,7 +86,7 @@ int playRound(char secret[]) {
 
     while (wrong < MAX_WRONG && strcmp(revealed, secret) !=0) {
         showBoard(revealed, guessed, wrong);
-        letter = readLetter("Guess a letter");
+        letter = readLetter("Guess a letter: ");
 
         if (alreadyGuessed(guessed, letter)){
             printf("You already guessed '%c', No penalty.\n", letter);
@@ -97,8 +100,8 @@ int playRound(char secret[]) {
         } else {
             printf(" Sorry, '%c' is not in the word.\n", letter);
             wrong++;
-        }
-        
+         }
+        } 
     }
 
     showBoard(revealed, guessed, wrong);
