@@ -26,7 +26,7 @@ void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int 
 	
 	// Ask for the player's name once, before the game loop starts
 	// Comes from input.c file
-	read_word("Player name: ", player);
+	readWord("Player name: ", player);
 	
 	do{
 		// Stop if history is full so we never write past the end of the array
@@ -81,9 +81,9 @@ void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int 
 		
 		printf("Score this game %d\n", history[slot].score);
 	}
-	//yes_or_no f-n comes from inputs.c 
-	//User input is getting read with readletter f-n also located in the input.c file. It is a f-n within a function it's used in the yes_or_no f-n
-	while (yes_or_no("Play Again (y/n)?: "));
+	// yes_or_no f-n comes from inputs.c 
+	// User input is getting read with readletter f-n also located in the input.c file. It is a f-n within a function it's used in the yes_or_no f-n
+	while (askYesNo("Play Again (y/n)?: "));
 }
 
 int main(void){
@@ -110,45 +110,45 @@ int main(void){
 	 
 	printf("Welcome to Hangman\n");
 	wordCount = loadWords(words);
-	gamecount = loadScores(history);
+	gameCount = loadScores(history);
 	
 	do{ 
-	printmenu();
-	//Inputs are read using the read_number F-n from inputs.c and then checked
-	//against a switch case to see what the user chose, functions from our different .c
-	//files are then called accordingly
-	choice = read_number("Choose an option: ", 0, 6); 
+	printMenu();
+	// Inputs are read using the read_number F-n from inputs.c and then checked
+	// against a switch case to see what the user chose, functions from our different .c
+	// files are then called accordingly
+	choice = readNumber("Choose an option: ", 0, 6); 
 	
 	        switch (choice) {
             case 1:
-				//Comes from the games.c file
+				// Comes from the games.c file
                 playGame(words, wordCount, history, &gameCount);
                 break;
             case 2:
-				//Comes from words.c
+				// Comes from words.c
                 addWord(words, &wordCount);
                 break;
             case 3:
-				//Comes from words.c
+				// Comes from words.c
                 showWords(words, wordCount);
                 break;
             case 4:
-				//Comes from scores.c
+				// Comes from scores.c
                 showScores(history, gameCount);
                 break;
             case 5:
-				//Comes from scores.c
+				// Comes from scores.c
                 showStatistics(history, gameCount);
                 break;
             case 6:
-				//saveWords comes from words.c and saveScores comes from scores.c 
+				// saveWords comes from words.c and saveScores comes from scores.c 
                 saveWords(words, wordCount);
                 saveScores(history, gameCount);
                 break;
             case 0:
-				//Uses yes_or_no from input.c to check wether or not user wants to save
-				//if yes, loop uses saveWords from words.c and saveScores.c from scores.c
-				//Futher testing is required to see if this line will work the yes_or_no function in it's current state
+				// Uses yes_or_no from input.c to check wether or not user wants to save
+				// if yes, loop uses saveWords from words.c and saveScores.c from scores.c
+				// Futher testing is required to see if this line will work the yes_or_no function in it's current state
                 if (yes_or_no("Save before quitting? (y/n): ")) {
                     saveWords(words, wordCount);
                     saveScores(history, gameCount);
