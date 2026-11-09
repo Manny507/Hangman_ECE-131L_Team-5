@@ -1,9 +1,6 @@
 # Hangman_ECE-131L_Team-5
 Hangman project in C for ECE-131L
 
-//Reference Code
-- https://unmm-my.sharepoint.com/:f:/g/personal/cmarquezgarcia_unm_edu/IgB4RC1ciZlURo21uWoDDBV3Ae3n_p7Bv-wAbK0aOKUkCPE?e=7ld7t4
-
 //Slide show presentation:
 - https://docs.google.com/presentation/d/1TYPi1GrRzRFANInMIVez6NxyRyhivznbg6KTQomr6xA/edit?usp=sharing
 
