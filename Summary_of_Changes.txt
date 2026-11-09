@@ -1,0 +1,140 @@
+//This document is a record of the summary of changes regarding the dynamic memory array integration into the group hangman project
+
+changelog #1: Dynamic Word Array Declaration 
+File: Hangman_main.c 
+Location: Line 90, inside main()
+
+Current state: char words[MAX_WORDS][WORD_SIZE];
+Replacement: char (*words)[WORD_SIZE] = NULL;
+
+changelog #2: Update loadWords() call
+File: Handman_main.c
+Location: Line 112
+
+Current state: wordCount = loadWords(words);
+Replacement: wordCount = loadWords(&words);
+
+changelog #3: Update the loadWords() prototype
+File: hangman.h
+Location: approx. line #31
+
+Current state: int loadWords(char words[][WORD_SIZE]);
+Replacement: int loadWords(char (**words)[WORD_SIZE]);
+
+changelog #4: Adapt loadWords()in words.c
+File: words.c
+Location: approx. line 15
+
+Current state: int loadWords(char words[][WORD_SIZE])
+Replacement: int loadWords(char (**words)[WORD_SIZE])
+
+changelog #5: Delete the loadWords() body
+File: words.c
+Location: TBD
+
+Current State: Reads words directly into a fixed size array (reference version 1)
+Replacement: Use dynamically allocated array (SEE CHANGELOG #5)
+
+changelog #6: Reintroduce File Opening in loadWords()
+File: words.c
+Location: TBD
+
+Current Sate: EMPTY
+Replacement: FILE *file = fopen(WORDS_FILE, "r");
+
+changelog #7: File Opening Error Check
+File: words.c
+Location: TBD
+
+Current State: FILE *file = fopen(WORDS_FILE, "r");
+Replacement: Added error-handling block
+
+changelog #8: Count Words in the Database
+File: words.c
+Location: inside loadWords() after changelog #7
+
+Current State: Function has no mechanism to count words before allocating memory
+Replacement: SEE CHANGELOG #8
+
+changelog #9: Rewind File and Allocate Memory
+File: words.c
+Location: Inside loadWords(), immediately after Changelog #8 counting loop
+
+Current state: No memory has been allocated to store the words
+Replacement: SEE CHANGELOG #9
+
+changelog #10: Populate the Allocated Word Arry
+File: words.c
+Location: Inside loadWords(), after changelog #9 allocation failure block
+
+Current State: Memory has been allocated, no words have been copied into the array
+Replacement: SEE CHANGELOG #10
+
+changelog #11: Update the addWord() Function Prototype
+File: hangman.h
+Location: Word-Management function declarations
+
+Current state: void addWord(char words[][WORD_SIZE], int *wordCount);
+Replacement: void addWord(char (**words)[WORD_SIZE], int *wordCount);
+
+changelog #12: Update addWord() Function Definition
+File: words.c
+Location: The existing addWord() function definition
+
+Current State: void addWord(char words[][WORD_SIZE], int *wordcount)
+Replacement: void addWord(char (**words)[WORD_SIZE], int *wordCount)
+
+changelog #13: Update the Duplicate Word Check
+File: words.c
+Location: Inside the addWord(), in the word-validation section
+
+Current State: } else if (wordExists(words, *wordCount, newWord)) {
+Replacement: } else if (wordExists(*words, *wordCount, newWord)) { //CHANGELOG #13
+
+changelog #14: Correct Array Access in strcopy()
+File: words.c
+Location: inside final else block 
+
+Current state: strcpy(words[*wordCount], newWord);
+Replacement: strcpy((*words)[*wordCount], newWord); //CHANGELOG #14
+
+changelog #15: Integrate Dynamic Memory Reallocation
+File: words.c
+Location: Inside the final else block, before strcpy()
+
+Current state: UNAVAIL
+Replacement: See CHANGELOG #15
+
+changelog #16: Remove the Fixed Word Limit
+File: words.c
+Location: Immediately after newWord declaration, near beginning of function
+
+Current State: UNAVAIL
+Replacement: SEE CHANGELOG #16
+changelog #17: Update addWord() Function Call
+file: Hangman_main.c
+Location: inside main menu's switch case 2
+
+Current state: addWord(words, &wordCount);
+Replacement: addWord(&words, &wordCount);
+
+changelog #18: Add Dynamic Memory Cleanup
+File: Hangman_main.c
+Location: inside main() after menu loop finishes before return
+
+Current State: Not present
+Replacement: free(words);
+
+changelog #20: TEMP REPLACEMENT on gameCount
+changelog #21: TEMP OMISSION toLowerWord()
+changelog #22: Correcting memory access beyond string
+File: input.c
+Location: toLowerWord()
+
+Current State: word[i] != '\n'
+Replacement: word[i] != '\0'
+
+changelog #23: Restore Lowercase Conversion
+
+
+

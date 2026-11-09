@@ -10,30 +10,68 @@
    many words it loaded (0 if the file is missing).
    KEY IDEA: words[][WORD_SIZE] is a 2-D char array: each row holds
    one word. fopen returns NULL when a file can't be opened. */
-int loadWords(char words[][WORD_SIZE]) {
-    FILE *file;
-    int count = 0;
 
-    file = fopen(WORDS_FILE, "r");
-    if (file == NULL) {
+/* CHANGELOG #4 and CHANGELOG #5 */ 
+int loadWords(char (**words)[WORD_SIZE]) 
+{
+    FILE *file = fopen(WORDS_FILE, "r"); //CHANGELOG #6
+    //CHANGELOG #7
+    if (file == NULL)
+    {
         printf("Could not open %s. Add words with option 2.\n", WORDS_FILE);
         return 0;
     }
 
-    /* fscanf returns 1 each time it reads a word, and stops at the end of the file */
-    while (count < MAX_WORDS && fscanf(file, "%20s", words[count]) == 1) {
-        if (strlen(words[count]) >= MIN_LETTERS && isAllLetters(words[count])) {
-            toLowerWord(words[count]);
-            count++;                    /* keep this word */
-        } else {
-            printf("  Skipping \"%s\" in %s (needs %d-20 letters).\n",
-                   words[count], WORDS_FILE, MIN_LETTERS);
+    //CHANGELOG #8
+    int wordCount = 0;
+    char tempWord[WORD_SIZE];
+
+    while (fgets(tempWord, WORD_SIZE, file) != NULL)
+    {
+        wordCount ++;
+    }
+
+    //CHANGELOG #9
+    rewind(file);
+
+    if (wordCount == 0)
+    {
+        fclose(file);
+        return 0;
+    }
+   
+    *words = calloc(wordCount, sizeof(**words));
+ 
+    if (*words == NULL)
+    {
+        printf("Error: Memory Allocation Failed.\n");
+        fclose(file);
+        return 0;
+    }
+
+    //CHANGELOG #10
+    int loadedCount = 0;
+
+    while (fgets(tempWord, WORD_SIZE, file) != NULL)
+    {
+        int length = strlen(tempWord);
+        
+        if (length > 0 && tempWord[length - 1] == '\n')
+        {
+            tempWord[length - 1] = '\0';
+        }
+    
+        if (strlen(tempWord) >= MIN_LETTERS && isAllLetters(tempWord))
+        {
+            toLowerWord(tempWord); //CHANGELOG #21
+            strcpy((*words)[loadedCount], tempWord);
+            loadedCount++;
         }
     }
 
     fclose(file);
-    printf("Words loaded from %s: %d\n", WORDS_FILE, count);
-    return count;
+    printf("Words loaded from %s: %d\n", WORDS_FILE, loadedCount);
+    return loadedCount;
 }
 
 /* saveWords: writes the word list to words.txt, one word per line.
@@ -58,26 +96,34 @@ void saveWords(char words[][WORD_SIZE], int wordCount) {
 /* addWord: asks for a new word and adds it to the end of the list.
    KEY IDEA (pass-by-reference): wordCount points to main's counter,
    so (*wordCount)++ adds 1 to main's variable, not to a copy. */
-void addWord(char words[][WORD_SIZE], int *wordCount) {
+//CHANGELOG #12
+void addWord(char (**words)[WORD_SIZE], int *wordCount) {
     char newWord[WORD_SIZE];
 
-    if (*wordCount == MAX_WORDS) {
-        printf("The word list is full (%d words).\n", MAX_WORDS);
-        return;
-    }
+    //CHANGELOG #16 REMOVED fixed MAXED WORDS RESTRICTION
 
     readWord("New word: ", newWord);
     toLowerWord(newWord);
 
     if (strlen(newWord) < MIN_LETTERS) {
         printf("  Rejected: words need at least %d letters.\n", MIN_LETTERS);
-    } else if (wordExists(words, *wordCount, newWord)) {
+    } else if (wordExists(*words, *wordCount, newWord)) { //CHANGELOG #13
         printf("  Rejected: \"%s\" is already in the list.\n", newWord);
-    } else {
-        strcpy(words[*wordCount], newWord);     /* copy into the next empty row */
-        (*wordCount)++;
-        printf("  Added \"%s\". Words in list: %d\n", newWord, *wordCount);
-    }
+    } else
+      {
+          //CHANGELOG #15
+          char (*temp)[WORD_SIZE] = realloc(*words, (*wordCount + 1) * sizeof(**words));
+          if (temp == NULL)
+          {
+              printf("Error: Memory Allocation Failed.\n");
+              return;
+          }
+          *words = temp;
+
+          strcpy((*words)[*wordCount], newWord);  //CHANGELOG #14
+          (*wordCount)++;
+          printf("  Added \"%s\". Words in list: %d\n", newWord, *wordCount);
+      }
 }
 
 /* showWords: prints the word list, four words per line. */
