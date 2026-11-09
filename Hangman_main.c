@@ -87,7 +87,7 @@ void playGame(char words[][WORD_SIZE], int wordCount, GameRecord history[], int 
 }
 
 int main(void){
-	 char words[MAX_WORDS][WORD_SIZE];   /* the word list: one word per row */
+	 char (*words)[WORD_SIZE] = NULL;	//CHANGELOG #1
     GameRecord history[MAX_GAMES];      /* every finished game */
     int wordCount;
     int gameCount;
@@ -109,8 +109,9 @@ int main(void){
 	srand(time(NULL));      
 	 
 	printf("Welcome to Hangman\n");
-	wordCount = loadWords(words);
-	gameCount = loadScores(history);
+	wordCount = loadWords(&words);		//CHANGELOG #2
+	//gameCount = 0; //TEMP BUG BYPASS CHANGELOG #20
+        gameCount = loadScores(history);
 	
 	do{ 
 	printMenu();
@@ -126,7 +127,7 @@ int main(void){
                 break;
             case 2:
 				// Comes from words.c
-                addWord(words, &wordCount);
+                addWord(&words, &wordCount);  //CHANGELOG #17
                 break;
             case 3:
 				// Comes from words.c
@@ -158,7 +159,8 @@ int main(void){
         }
 		// Go back to the top while choice is not 0; picking 0 makes this false and ends the loop.
     } while (choice != 0);
-
+    
+    free(words); //CHANGELOG #18
     return 0;
 }
 

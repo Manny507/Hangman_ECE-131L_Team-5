@@ -167,7 +167,7 @@ int isAllLetters(char text[]){
 
 void toLowerWord( char word[]){
 	
-	for( int i = 0; word[i] != '\n';i++){
+	for( int i = 0; word[i] != '\0';i++){ /* CHANGELOG '\0' */
 		if(word[i] >= 'A' && word[i] <= 'Z'){
 			word[i] = word[i] + ('a' - 'A');
 		}

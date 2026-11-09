@@ -40,9 +40,9 @@ int  isAllLetters(char text[]);
 void toLowerWord(char word[]);
 
     // Words list management (words.c)
-int loadWords(char words[][WORD_SIZE]);
+int loadWords(char (**words)[WORD_SIZE]);  //CHANGELOG #3
 void saveWords(char words[][WORD_SIZE], int wordCount);
-void addWord(char words[][WORD_SIZE], int *wordCount);
+void addWord(char (**words)[WORD_SIZE], int *wordCount);  //CHANGELOG #11
 int wordExists(char words[][WORD_SIZE], int wordCount, char word[]);
 void showWords(char words[][WORD_SIZE], int wordCount);
 
