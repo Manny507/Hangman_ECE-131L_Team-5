@@ -1,7 +1,5 @@
 /*
  * words.c - the word list and the words.txt file
- * Part 3 of the Hangman program (Word List)
- * Owner: ____________________ (Documentation Lead)
  */
 
 #include "hangman.h"
