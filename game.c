@@ -47,7 +47,7 @@ int alreadyGuessed(char guessed[], char letter) {
     return 0;
 }
 
-void showBoard(char revealed[], char guessed[], int wrong) {
+void showBoard(char revealed[], char guessed[], int wrong) {  //showBoard displays the current game played such as the letters guessed and wrong guesses
     int i;
 
     printf("\n");
@@ -62,7 +62,7 @@ void showBoard(char revealed[], char guessed[], int wrong) {
     printf("Lives: %d\n", MAX_WRONG - wrong);
 }
 
-int revealLetter(char secret[], char revealed[], char letter) {
+int revealLetter(char secret[], char revealed[], char letter) { //revealLetter reveals the letter of the correct guess the user inputs
     int i;
     int found = 0;
 
@@ -75,14 +75,14 @@ int revealLetter(char secret[], char revealed[], char letter) {
     return found;
 }
 
-int computeScore(int wordLength, int wrong, int won) {
+int computeScore(int wordLength, int wrong, int won) {    //ComputeScore calculate the scores which would in return displays at the end of the game
     if (won == 0){
         return 0;
     }
     return 10 * wordLength + 20 * (MAX_WRONG - wrong);
 }
 
-int playRound(char secret[]) {
+int playRound(char secret[]) {    // playRound runs one complete round of the main function 
     char revealed[WORD_SIZE];
     char guessed[27]= "";
     int wrong = 0;
