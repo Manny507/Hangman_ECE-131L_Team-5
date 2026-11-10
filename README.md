@@ -27,10 +27,6 @@ A menu-driven Hangman game for the terminal, written in C for ECE 131L (Section 
 |N/A|Test plan|
 |TEAM\_README.md (link)|Presentation slides|
 
-## Requirements
-
-* gcc, version \_\_\_\_\_\_\_\_\_\_ (run `gcc --version` to check)
-* We built and tested it in \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
 
 ## How to build
 
@@ -52,7 +48,7 @@ gcc -std=c11 -Wall -Wextra -c scores.c
 ./hangman
 ```
 
-Keep `words.txt` in the same folder as the program. At startup, the program loads the word list and the score history and says how many of each it loaded. If `scores.txt` doesn't exist yet, it starts a new history. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Keep `words.txt` in the same folder as the program. At startup, the program loads the word list and the score history and says how many of each it loaded. If `scores.txt` doesn't exist yet, it starts a new history.
 
 ## How to play
 
