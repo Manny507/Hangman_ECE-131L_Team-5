@@ -149,7 +149,6 @@ int main(void){
             case 0:
 				// Uses askYesNO from input.c to check wether or not user wants to save
 				// if yes, loop uses saveWords from words.c and saveScores.c from scores.c
-				// Futher testing is required to see if this line will work the yes_or_no function in it's current state
                 if (askYesNo("Save before quitting? (y/n): ")) {
                     saveWords(words, wordCount);
                     saveScores(history, gameCount);
