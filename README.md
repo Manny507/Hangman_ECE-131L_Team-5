@@ -2,8 +2,6 @@
 
 A menu-driven Hangman game for the terminal, written in C for ECE 131L (Section 012) by Team 5.
 
-> \*\*Template note:\*\* Replace every blank (`\_\_\_\_\_\_\_\_\_\_`) and every note like this one, then delete the notes.
-
 ## Team
 
 |Name|Role|File(s)|
@@ -25,9 +23,9 @@ A menu-driven Hangman game for the terminal, written in C for ECE 131L (Section 
 |game.c|One round of Hangman: the board, guesses, and scoring|
 |scores.c|The score history, scores.txt, and statistics|
 |words.txt|The starting word list|
-|README.md|Project report|
-|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|Test plan|
-|TEAM\_README.md|Presentation slides|
+|report.txt|Project report|
+|N/A|Test plan|
+|TEAM\_README.md (link)|Presentation slides|
 
 ## Requirements
 
@@ -39,7 +37,7 @@ A menu-driven Hangman game for the terminal, written in C for ECE 131L (Section 
 From the repository folder, compile all five files together:
 
 ```
-gcc -std=c11 -Wall -Wextra Hangman\_main.c input.c words.c game.c scores.c -o hangman
+gcc -std=c11 -Wall -Wextra Hangman\\\_main.c input.c words.c game.c scores.c -o hangman
 ```
 
 A clean build prints nothing. To check one file by itself without building the program, add `-c`:
@@ -94,124 +92,124 @@ Choose an option: 1
 Player name: Manny
 
 Manny started a new game, the chosen word has 10 letters
-  _____
+  \_\_\_\_\_
   |   |
       |
       |
       |
       |
 =========
-Word:  _ _ _ _ _ _ _ _ _ _
+Word:  \_ \_ \_ \_ \_ \_ \_ \_ \_ \_
 Guessed: 
 Lives: 6
 Guess a letter: A
  Good Job! 'a' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
       |
       |
       |
       |
 =========
-Word:  _ _ a _ _ _ _ _ _ _
+Word:  \_ \_ a \_ \_ \_ \_ \_ \_ \_
 Guessed: a
 Lives: 6
 Guess a letter: e
  Sorry, 'e' is not in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
       |
       |
       |
 =========
-Word:  _ _ a _ _ _ _ _ _ _
+Word:  \_ \_ a \_ \_ \_ \_ \_ \_ \_
 Guessed: ae
 Lives: 5
 Guess a letter: i
  Good Job! 'i' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
       |
       |
       |
 =========
-Word:  _ _ a _ _ i _ _ _ _
+Word:  \_ \_ a \_ \_ i \_ \_ \_ \_
 Guessed: aei
 Lives: 5
 Guess a letter: o
  Good Job! 'o' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
       |
       |
       |
 =========
-Word:  _ _ a _ _ i _ _ o _
+Word:  \_ \_ a \_ \_ i \_ \_ o \_
 Guessed: aeio
 Lives: 5
 Guess a letter: u
  Sorry, 'u' is not in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
   |   |
       |
       |
 =========
-Word:  _ _ a _ _ i _ _ o _
+Word:  \_ \_ a \_ \_ i \_ \_ o \_
 Guessed: aeiou
 Lives: 4
 Guess a letter: t
  Good Job! 't' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
   |   |
       |
       |
 =========
-Word:  t _ a _ _ i _ t o _
+Word:  t \_ a \_ \_ i \_ t o \_
 Guessed: aeiout
 Lives: 4
 Guess a letter: r
  Good Job! 'r' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
   |   |
       |
       |
 =========
-Word:  t r a _ _ i _ t o r
+Word:  t r a \_ \_ i \_ t o r
 Guessed: aeioutr
 Lives: 4
 Guess a letter: n
  Good Job! 'n' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
   |   |
       |
       |
 =========
-Word:  t r a n _ i _ t o r
+Word:  t r a n \_ i \_ t o r
 Guessed: aeioutrn
 Lives: 4
 Guess a letter: s
  Good Job! 's' is in the word.
 
-  _____
+  \_\_\_\_\_
   |   |
   O   |
   |   |
@@ -239,14 +237,14 @@ Words that are too short, too long, or not all letters are skipped when `words.t
 
 ```mermaid
 flowchart TD
-    H["hangman.h<br/>shared libraries, limits, GameRecord struct, prototypes"]
-    M["Hangman_main.c<br/>menu and game flow"]
-    G["game.c<br/>one round of Hangman"]
-    W["words.c<br/>word list"]
-    S["scores.c<br/>score history and stats"]
-    I["input.c<br/>reads and checks what the user types"]
-    WT[("words.txt")]
-    ST[("scores.txt")]
+    H\["hangman.h<br/>shared libraries, limits, GameRecord struct, prototypes"]
+    M\["Hangman\_main.c<br/>menu and game flow"]
+    G\["game.c<br/>one round of Hangman"]
+    W\["words.c<br/>word list"]
+    S\["scores.c<br/>score history and stats"]
+    I\["input.c<br/>reads and checks what the user types"]
+    WT\[("words.txt")]
+    ST\[("scores.txt")]
 
     H -.->|included by| M
     H -.->|included by| G
@@ -264,7 +262,7 @@ flowchart TD
     S <-->|load / save| ST
 ```
 
-`hangman.h` is included by every `.c` file. `Hangman_main.c` runs the menu and calls into `game.c`, `words.c`, `scores.c`, and `input.c`. `game.c` and `words.c` also use `input.c` for reading and checking what the user types. `words.c` loads and saves `words.txt`, and `scores.c` loads and saves `scores.txt`.
+`hangman.h` is included by every `.c` file. `Hangman\_main.c` runs the menu and calls into `game.c`, `words.c`, `scores.c`, and `input.c`. `game.c` and `words.c` also use `input.c` for reading and checking what the user types. `words.c` loads and saves `words.txt`, and `scores.c` loads and saves `scores.txt`.
 
 ## Assumptions and limits
 
@@ -272,13 +270,8 @@ flowchart TD
 * The score history holds up to 100 games.
 * Each round allows 6 wrong guesses.
 * `words.txt` and `scores.txt` are read from the folder the program runs in.
-* \---
-
-> \*\*Template note:\*\* Add any other assumption your program makes, or delete the blank line.
 
 ## Known issues
 
-\---
-
-> \*\*Template note:\*\* List anything that doesn't work yet, or write "None known."
+None known.
 
