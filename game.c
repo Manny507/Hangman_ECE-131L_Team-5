@@ -7,7 +7,7 @@ int pickRandomWord(int wordCount){ //funcction name is pickRandomWorld & wordCou
 void drawHangman(int wrong) { //void doesnt return a value & int wrong tracks those wrong guesses
     printf("  _____\n"); //starts to print out the frame of the hangman
     printf("  |   |\n");
-    if (wrong >= 1) { //Each number from 1-6 represents a wrong guess and that correlates to the body of the stickman as you progress
+    if (wrong >= 1) { //Each number from 1-6 represents a wrong guess and that correlates to the body of the stickman as you progress 
         printf("  O   |\n");
     } else {
         printf("      |\n");
