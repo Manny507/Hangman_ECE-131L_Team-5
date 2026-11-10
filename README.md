@@ -235,7 +235,7 @@ Words that are too short, too long, or not all letters are skipped when `words.t
 
 ## How the files connect
 
-!\[How the six files connect](function\_diagram.svg)
+!\[How the six files connect](function_diagram.svg)
 
 `hangman.h` is included by every `.c` file. `Hangman\_main.c` runs the menu and calls into `game.c`, `words.c`, `scores.c`, and `input.c`. `game.c` and `words.c` also use `input.c` for reading and checking what the user types. `words.c` loads and saves `words.txt`, and `scores.c` loads and saves `scores.txt`.
 
