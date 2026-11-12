@@ -39,20 +39,27 @@ void clearInput(){
 int readNumber(char prompt[], int min, int max){
     int number;
     int valid = 0;
+	char nextChar;
 
     do{
 	    printf("%s", prompt);
 //If user tries to input anything that is not an integer scanf will return false and hence we notify the user to input a whole number
-	    if (scanf("%d", &number) != 1){
+//We added nextChar so that if the user decides to try and outsmart the programmer by adding a decimal point
+//scanf picks up on the decimal point as a case to ask the reader to input a whole number
+//Otherwise the user could type a decimal number and it will slip through the program as if nothing happened
+	    if (scanf("%d%c", &number,&nextChar) != 2 || nextChar != '\n'){
 		    printf("Please input a whole number\n");
+//clears remaining invalid characters up to '\n'
+			clearInput();
 	    } else if ( number < min || number > max ){
 		    printf("Please enter a number between the range given:%d to %d\n", min, max);
+//No need for clearInput() here since the line was already clean and ended with '\n'
 	    } else {
 //If user entered a whole number within the range, then the while loop is valid and is allowed to exit		    
 		    valid = 1;
 	    }
 
-	    clearInput();
+	    
     
     }while(valid == 0);
 
